@@ -56,7 +56,7 @@ public class TimeCalc {
         String amPm = (hoursResult >= 12) ? " PM" : " AM";
         int hoursFormatted = (hoursResult > 12) ? hoursResult - 12 : hoursResult;
 
-        return("" + hoursFormatted + ":" + minutesFormatted + amPm);
+        system.out.println("" + hoursFormatted + ":" + minutesFormatted + amPm);
 
 	}
 }
