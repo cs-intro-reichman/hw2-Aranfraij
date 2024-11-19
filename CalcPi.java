@@ -4,6 +4,7 @@ public class CalcPi {
 		int rounds = Integer.parseInt(args[0]);
 		double sum = 0;
 		int sign = 1;
+	    int numerator = Integer.parseInt(args[1]);
 		for (int i = 0; i < rounds; i++) {
     	    sum += numerator / (2 * i + 1.0);
     	    sign = sign * (-1);
