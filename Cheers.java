@@ -10,7 +10,7 @@ public class Cheers {
                             } else {
                                     System.out.println("Give me a " + c + ": " + c + "!");
                             }
-            }
+            
             System.out.println("What does that spell?");
             for (int i = 0; i < times; i++) {
                 System.out.println(text + "!!!");
