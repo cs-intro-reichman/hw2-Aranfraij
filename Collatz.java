@@ -1,9 +1,8 @@
-// Demonstrates the Collatz conjecture. */
 public class Collatz {
 	public static void main(String args[]) {
 	    int highestSeed = Integer.parseInt(args[0]); 
 		String mode = args[1];
-		// Checks the Collatz conjecture for seeds going from 1 to highestSeeed.
+		
 		for (int seed = 1; seed <= highestSeed; seed++) {
 			int x = seed;
 			boolean flag = false;
