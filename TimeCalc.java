@@ -1,63 +1,50 @@
-// Performs time calculations. 
+// Performs time calculations.
 public class TimeCalc {
-	public static void main(String[] args) {
-		String time = args[0];
-		String mins = args[1];
-		System.out.println(TimeCalc(time,mins));
-	}
+    public static void main(String[] args) {
+        if (args.length < 2) {
+            System.out.println("Please provide both the time and the number of minutes.");
+            return;
+        }
+        
+        String time = args[0];
+        String mins = args[1];
+        System.out.println(calculateTime(time, mins));
+    }
 
-	public static String TimeCalc(String time, String mins){
-		if (time.length() != 5 || time.indexOf(':') == -1){
+    public static String calculateTime(String time, String mins) {
+        // Validate time format (HH:MM)
+        if (!time.matches("\\d{2}:\\d{2}")) {
             return "Invalid input";
         }
-        String digits = "0123456789";
-        if (digits.indexOf(time.charAt(0)) == -1 || digits.indexOf(time.charAt(1)) == -1 
-            || digits.indexOf(time.charAt(3)) == -1 || digits.indexOf(time.charAt(4)) == -1){
+
+        // Validate and parse time
+        int hours = Integer.parseInt(time.substring(0, 2));
+        int minutes = Integer.parseInt(time.substring(3, 5));
+        if (hours < 0 || hours > 23 || minutes < 0 || minutes > 59) {
             return "Invalid input";
         }
-        boolean flag = true;
-        int sign = mins.charAt(0) == '-' ? -1 : 1;
-        int startIndex = mins.charAt(0) == '-' ? 1 : 0;
 
-        for (int i = startIndex; i < mins.length() && flag; i++) {
-            flag = (digits.indexOf(mins.charAt(i)) != -1);
-        } 
-        if (!flag){
+        // Validate and parse minutes
+        int offsetMinutes;
+        try {
+            offsetMinutes = Integer.parseInt(mins);
+        } catch (NumberFormatException e) {
             return "Invalid input";
         }
-        int hours = Integer.parseInt("" + time.charAt(0) + time.charAt(1));
-		int minutes = Integer.parseInt("" + time.charAt(3) + time.charAt(4));
-        if (hours > 23 || hours < 0 || minutes > 59 || minutes < 0){
-            return "Invalid input";
-        }
-        int totalMinutesToCalc = Math.abs(Integer.parseInt(mins));
-        int hoursToCalc = totalMinutesToCalc / 60;
-        int minsToCalc = totalMinutesToCalc % 60;
-        int minsResult = minutes + (sign * minsToCalc);
-        int hoursToCarry = 0;
-        if (minsResult < 0 || minsResult > 59){
-            if (minsResult < 0){
-                hoursToCarry--;
-                minsResult += 60;
-            } else {
-                hoursToCarry++;
-                minsResult -= 60;
-            }
-        }
-        int hoursResult = hours + hoursToCarry + (sign * hoursToCalc);
-        if (hoursResult >= 24 || hoursResult < 0 ){
-            if (hoursResult >= 24){
-                hoursResult = hoursResult % 24;
-            } else {
-                hoursResult += 24;
-            }
-        }
-        String minutesFormatted = (minsResult >= 10) ? minsResult+"" : ("0" + minsResult);
-        String amPm = (hoursResult >= 12) ? " PM" : " AM";
-        int hoursFormatted = (hoursResult > 12) ? hoursResult - 12 : hoursResult;
 
-        return("" + hoursFormatted + ":" + minutesFormatted );
-		
+        // Total time in minutes
+        int totalMinutes = hours * 60 + minutes + offsetMinutes;
 
-	}
+        // Adjust for 24-hour wrapping
+        totalMinutes = (totalMinutes % (24 * 60) + (24 * 60)) % (24 * 60);
+
+        // Calculate final hours and minutes
+        int finalHours = totalMinutes / 60;
+        int finalMinutes = totalMinutes % 60;
+
+        // Format time with leading zeros
+        String formattedTime = String.format("%02d:%02d", finalHours, finalMinutes);
+
+        return formattedTime;
+    }
 }
