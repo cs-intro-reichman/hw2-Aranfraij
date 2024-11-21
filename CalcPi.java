@@ -2,7 +2,6 @@ public class CalcPi {
     public static void main(String args[]) {
         // Ensure the correct number of arguments are provided
         if (args.length < 2) {
-            System.out.println("Error: Please provide two arguments - the number of rounds and the numerator.");
             return; // Exit the program if arguments are insufficient
         }
 
@@ -13,7 +12,6 @@ public class CalcPi {
             rounds = Integer.parseInt(args[0]);
             numerator = Integer.parseInt(args[1]);
         } catch (NumberFormatException e) {
-            System.out.println("Error: Both arguments must be integers.");
             return;
         }
 
