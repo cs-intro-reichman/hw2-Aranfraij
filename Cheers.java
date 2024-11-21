@@ -16,4 +16,4 @@ public class Cheers {
                 System.out.println(text + "!!!");
             }
         }
-
+	}
