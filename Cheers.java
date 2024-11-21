@@ -39,11 +39,3 @@ public class Cheers {
         }
     }
 }
-
-        // Output the final cheer
-        System.out.println("What does that spell?");
-        for (int i = 0; i < times; i++) {
-            System.out.println(text + "!!!");
-        }
-    }
-}
