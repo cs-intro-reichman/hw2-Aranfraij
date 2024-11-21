@@ -1,4 +1,5 @@
-// Prints a crowd cheering output.
+import java.util.Set;
+
 public class Cheers {
     public static void main(String[] args) {
         // Validate input arguments
@@ -17,16 +18,27 @@ public class Cheers {
             return;
         }
 
+        // Set of letters that require "an"
+        Set<Character> anLetters = Set.of('A', 'E', 'F', 'H', 'I', 'L', 'M', 'N', 'O', 'R', 'S', 'X');
+
         // Cheer for each character in the text
         for (int i = 0; i < text.length(); i++) {
             char c = text.charAt(i);
 
-            if ("AEIOUaeiou".indexOf(c) != -1) {
+            if (anLetters.contains(c)) {
                 System.out.println("Give me an " + c + ": " + c + "!");
             } else {
-                System.out.println("Give me an " + c + ": " + c + "!");
+                System.out.println("Give me a " + c + ": " + c + "!");
             }
         }
+
+        // Output the final cheer
+        System.out.println("What does that spell?");
+        for (int i = 0; i < times; i++) {
+            System.out.println(text + "!!!");
+        }
+    }
+}
 
         // Output the final cheer
         System.out.println("What does that spell?");
