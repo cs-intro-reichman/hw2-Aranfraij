@@ -7,7 +7,7 @@ public class Cheers {
             return;
         }
 
-        String text = args[0];
+        String text = args[0].toUpperCase();
         int times;
 
         try {
