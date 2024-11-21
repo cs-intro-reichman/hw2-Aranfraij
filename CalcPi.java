@@ -1,18 +1,24 @@
 public class CalcPi {
     public static void main(String args[]) {
-        // Ensure the correct number of arguments are provided
-        if (args.length < 2) {
-            return; // Exit the program if arguments are insufficient
+        // Default values
+        int rounds = 10;     // Default number of rounds
+        int numerator = 1;   // Default numerator
+
+        // Parse arguments if provided
+        if (args.length >= 1) {
+            try {
+                rounds = Integer.parseInt(args[0]);
+            } catch (NumberFormatException ignored) {
+                // Use default rounds if the input is invalid
+            }
         }
 
-        // Parse arguments
-        int rounds;
-        int numerator;
-        try {
-            rounds = Integer.parseInt(args[0]);
-            numerator = Integer.parseInt(args[1]);
-        } catch (NumberFormatException e) {
-            return;
+        if (args.length >= 2) {
+            try {
+                numerator = Integer.parseInt(args[1]);
+            } catch (NumberFormatException ignored) {
+                // Use default numerator if the input is invalid
+            }
         }
 
         // Calculate Pi approximation
